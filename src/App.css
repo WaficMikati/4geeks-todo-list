@@ -1,0 +1,107 @@
+:root {
+  --border-radius: 10px;
+}
+
+#root {
+  display: flex;
+}
+
+#main {
+  margin: auto;
+  display: grid;
+  width: 50%;
+  gap: 1rem;
+  text-align: center;
+}
+
+#task-input {
+  display: grid;
+  grid-template-columns: 1fr 3rem;
+}
+
+#task-input * {
+  font-size: 1.2rem;
+  padding: 1em;
+}
+
+#task-input input {
+  border-radius: 10px 0 0 10px;
+  background: #223;
+  color: #8e8e8e;
+  text-align: start;
+}
+
+input:focus {
+  outline: none;
+  border: 0;
+}
+
+input,
+button {
+  cursor: pointer;
+  border: 0;
+  text-align: end;
+}
+
+button {
+  min-height: 3.21rem;
+  min-width: 3.21rem;
+  border-radius: 0 10px 10px 0;
+  background: linear-gradient(to right, #223, #322);
+  color: #8e8e8e
+}
+
+button:hover {
+  background: linear-gradient(to right, #223, #234);
+}
+
+button:active {
+  background: linear-gradient(to right, #223, #678);
+}
+
+#task-input button {
+  background: linear-gradient(to right, );
+}
+
+#task-list {
+  display: grid;
+  gap: 0.5rem
+}
+
+.task-entry {
+  text-align: start;
+  display: grid;
+  grid-template-columns: min-content 1fr 3rem;
+  background: #223;
+  border-radius: calc(var(--border-radius) * 0.75);
+  align-items: center;
+}
+
+.task-entry :first-child {
+  margin: 0;
+  height: 3.21rem;
+  width: 3.21rem;
+  border-radius: calc(var(--border-radius) * 0.75) 0 0 var(--border-radius);
+  background: linear-gradient(to left, #223, #432);
+}
+
+.task-entry :first-child:hover {
+  background: linear-gradient(to left, #223, #234);
+}
+
+.task-entry :first-child.done {
+  background: linear-gradient(to left, #223, #253);
+}
+
+.task-entry :first-child:active {
+  background: linear-gradient(to left, #223, #678);
+}
+
+.task-entry span {
+  padding: 1rem;
+}
+
+.task-entry button {
+  height: 100%;
+  padding-right: 0.66em;
+}

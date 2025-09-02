@@ -1,42 +1,58 @@
-export const checkUserExistsOrCreate = (BASE, USER, setResponse, setTasklist) => {
-  fetch(`${BASE}/users/${USER}`)
-    .then(response => {
-      if (!response.ok) {
-        setResponse('Created user.')
-        return fetch(`${BASE}/users/${USER}`, {
-          method: 'POST'
-        })
-      } 
-      else {
-        setResponse(`Hello ${USER}!`)
-      }
-      return response.json()
-    }).then(data => setTasklist(data.todos))
+export async function checkUserExistsOrCreate(BASE, USER, setResponse, setTasklist) {
+  const response = await fetch(`${BASE}/users/${USER}`)
+
+  if (!response.ok) {
+    setResponse(`Created user: ${USER}`)
+    const createRes = await fetch(`${BASE}/users/${USER}`, { 
+      method: 'POST'
+    })
+
+    const createData = await createRes.json()
+    setTasklist(createData.todos)
+    return createData
+  }
+  else {
+    setResponse(`Hello ${USER}!`)
+    const data = await response.json()
+    setTasklist(data.todos)
+    return data
+  }
 }
 
-export const addTask = (BASE, USER, taskText, setTasklist) => {
-    fetch(`${BASE}/todos/${USER}`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        'label': taskText,
-        'is_done': false,
-      })
+export async function addTask (BASE, USER, taskText, setTasklist) {
+  const response = await fetch(`${BASE}/todos/${USER}`, {
+    method: 'POST',
+    headers: {'content-type':'application/json', accept:'application/json'},
+    body: JSON.stringify({
+      'label': taskText,
+      'is_done': false
     })
-    updateUi(BASE, USER, setTasklist)
-  }
+  })
 
-export const deleteTask = (BASE, USER, id, setTasklist) => {
-    fetch(`${BASE}/todos/${id}`, {
-      method: 'DELETE',
-      headers: {'accept': 'application/json'}
+  const data = await response.json()
+  console.log(data)
+  setTasklist(prev => [data,...prev])
+}
+
+export async function deleteTask (BASE, id, setTasklist) {
+  const response = await fetch(`${BASE}/todos/${id}`, {
+    method: 'DELETE',
+    headers: {'content-type':'application/json', accept:'application/json'}
+  })
+
+  setTasklist(prev => prev.filter(task => task.id !== id))
+}
+
+export async function toggleTaskStatus(BASE, e, setTasklist) {
+  const response = await fetch(`${BASE}/todos/${e.id}`, {
+    method: 'PUT',
+    headers: {'content-type':'application/json', accept:'application/json'},
+    body: JSON.stringify({
+      'label':e.label,
+      'is_done': !e.is_done
     })
-    updateUi(BASE, USER, setTasklist)
-  }
+  })
 
-const updateUi = (BASE, USER, setTasklist) => {
-    console.log('checking')
-    fetch(`${BASE}/users/${USER}`)
-      .then(r => r.json())
-      .then(d => setTasklist(d.todos))
-  }
+  const data = await response.json()
+  setTasklist(prev => prev.map(ele => ele.id === data.id ? data : ele))
+}

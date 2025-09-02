@@ -1,26 +1,9 @@
 :root {
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #121212;
+  color: #8e8e8e;
+  background: #121212;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-html,
-body,
-#root {
-  /* background-color: #894b67; */
-  overflow: hidden;
-}
-
-#root {
-  /* width: 100vw; */
-  /* height: 100vh; */
-  /* background-image: url('./assets/book.webp'); */
-  /* background-repeat: no-repeat; */
-  /* background-size: contain; */
-  /* background-position: center; */
 }
