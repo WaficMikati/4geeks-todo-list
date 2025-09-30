@@ -2,4 +2,4 @@
 
 My todo list project using the 4geeks api
 
-![Preview](preview.png)
+![Preview](src/assets/preview.png)
