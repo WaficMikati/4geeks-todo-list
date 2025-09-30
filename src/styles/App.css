@@ -1,0 +1,154 @@
+#main-grid {
+  display: grid;
+  justify-content: center;
+  transform: translateX(1.25rem);
+  /* width: min-content; */
+}
+
+#todo-grid {
+  padding: 13vh 30vh 15vh 20vh;
+  grid-column: 1;
+  grid-row: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  overflow: hidden;
+  column-gap: 10vh;
+}
+
+#main-bg {
+  grid-column: 1;
+  grid-row: 1;
+  height: 100vh;
+  transition: none;
+}
+
+.page.right {
+  text-align: right;
+}
+
+#input-group {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin-bottom: 0.65rem;
+}
+
+input[type='text'],
+button {
+  cursor: pointer;
+  background: #dba994cc;
+  border: none;
+  border: 0.01rem solid #f4d8ac;
+}
+
+input[type='text'] {
+  width: calc(100% - 0.6rem);
+  padding: 0.3rem;
+}
+
+input[type='text']:hover {
+  background: #ebbca7;
+}
+
+input[type='text']:focus {
+  outline: none;
+  background: #f8c4ad;
+}
+
+#btn-group {
+  display: grid;
+  grid-template-columns: 1fr 0.2fr;
+}
+
+#btn-group button {
+  font-size: 1rem;
+}
+
+button {
+  padding: 0.25rem;
+}
+
+button:hover {
+  background: #ebbca7;
+}
+
+button:active {
+  background: #f8c4ad;
+}
+
+.btn-page {
+  margin-top: 1.2rem;
+}
+
+.item-entry {
+  display: grid;
+  grid-template-columns: min-content 1fr min-content;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+  align-items: center;
+}
+
+.item-entry button,
+.btn-page {
+  border-radius: 0.25rem;
+}
+
+.page.right:has(.home) {
+  text-align: center;
+}
+
+.check {
+  cursor: pointer;
+  width: 1rem;
+  aspect-ratio: 1 / 1;
+  background: #ebbca7;
+  border-radius: 0.42rem;
+  margin-bottom: 0.2rem;
+}
+
+.check.done {
+  background-color: #82cea1;
+}
+
+.check:hover {
+  filter: brightness(1.05);
+}
+
+.check:active {
+  filter: brightness(1.1);
+}
+
+.item-entry span {
+  border-bottom: 0.075rem solid #00000011;
+  text-align: start;
+}
+
+.fade-reverse {
+  animation: fadeWipeRight 1.6s forwards;
+}
+
+.fade-forward {
+  animation: fadeWipeLeft 1.6s forwards;
+}
+
+@keyframes fadeWipeRight {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes fadeWipeLeft {
+  from {
+    opacity: 0;
+    clip-path: inset(0 0 0 100%);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}

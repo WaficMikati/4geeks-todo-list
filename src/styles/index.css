@@ -1,0 +1,23 @@
+@font-face {
+  font-family: 'Alkemikal';
+  src: url('../assets/Alkhemikal.ttf');
+}
+
+:root {
+  background-color: #894B67;
+  font-size: 4vh;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Alkemikal';
+  font-size: 1rem;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
